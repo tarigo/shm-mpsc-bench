@@ -147,7 +147,12 @@ runtime + `LocalSet`. По 4 продюсера на сценарий.
 (1 MiB символов из base64-алфавита), аллоцируется один раз на
 продюсера и переиспользуется.
 
+![bench summary](out/summary.png)
+
 ### Пропускная способность (events/s)
+
+![throughput](out/throughput.png)
+
 
 | codec  |     small |    medium |     large |    huge |
 |--------|----------:|----------:|----------:|--------:|
@@ -160,6 +165,9 @@ runtime + `LocalSet`. По 4 продюсера на сценарий.
 
 ### Пропускная способность по wire (MB/s, со стороны консьюмера)
 
+![wire bandwidth](out/bandwidth.png)
+
+
 | codec  |  small |   medium |    large |     huge |
 |--------|-------:|---------:|---------:|---------:|
 | capnp  |  98.54 |  411.54  | 2 533.54 | 3 361.97 |
@@ -170,6 +178,9 @@ runtime + `LocalSet`. По 4 продюсера на сценарий.
 | avro   |  38.74 |  299.65  | 2 222.82 | 4 990.31 |
 
 ### Средний размер слота (байт)
+
+![slot bytes](out/slot_bytes.png)
+
 
 | codec  | small | medium |   large |     huge |
 |--------|------:|-------:|--------:|---------:|
@@ -182,6 +193,9 @@ runtime + `LocalSet`. По 4 продюсера на сценарий.
 
 ### Framing overhead = 1 − payload / wire
 
+![framing overhead](out/overhead.png)
+
+
 | codec  |  small | medium |  large |  huge |
 |--------|-------:|-------:|-------:|------:|
 | capnp  | 50.0 % |  5.9 % |  0.4 % | 0.0 % |
@@ -191,15 +205,9 @@ runtime + `LocalSet`. По 4 продюсера на сценарий.
 | flat   | 52.9 % |  6.6 % |  0.4 % | 0.0 % |
 | avro   | 21.9 % |  1.7 % |  0.1 % | 0.0 % |
 
-### Графики
-
-Рисует `scripts/plot.py` из `out/bench.json`:
-
-* `out/throughput.png` — events/s, log-шкала, по сценариям.
-* `out/bandwidth.png` — wire MB/s, log-шкала.
-* `out/overhead.png` — framing overhead, %.
-* `out/slot_bytes.png` — средний размер слота на wire.
-* `out/summary.png` — все четыре метрики в одной 2×2 фигуре.
+Все пять плотов выше (`throughput.png`, `bandwidth.png`,
+`slot_bytes.png`, `overhead.png`, `summary.png`) рисует
+`scripts/plot.py` из `out/bench.json`.
 
 ### Как читать числа
 
